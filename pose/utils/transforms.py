@@ -103,7 +103,7 @@ def get_transform(center, scale, res, rot=0):
         t_mat[1,2] = -res[0]/2
         t_inv = t_mat.copy()
         t_inv[:2,2] *= -1
-        t = np.dot(t_inv,np.dot(rot_mat,np.dot(t_mat,t)))
+        t = np.linalg.multi_dot([t_inv,rot_mat,t_mat,t])
     return t
 
 
